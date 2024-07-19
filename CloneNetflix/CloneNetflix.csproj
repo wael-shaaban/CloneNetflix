@@ -47,7 +47,7 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		<MauiImage Update="Resources\Images\dotnetbot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -59,12 +59,40 @@
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+	  <None Remove="Resources\Images\brand_netflix.svg" />
+	  <None Remove="Resources\Images\close.svg" />
+	  <None Remove="Resources\Images\dotnet_bot.svg" />
+	  <None Remove="Resources\Images\download.svg" />
+	  <None Remove="Resources\Images\explore.svg" />
+	  <None Remove="Resources\Images\game.svg" />
+	  <None Remove="Resources\Images\home.svg" />
+	  <None Remove="Resources\Images\hometab.svg" />
+	  <None Remove="Resources\Images\info_circle.svg" />
+	  <None Remove="Resources\Images\library.svg" />
+	  <None Remove="Resources\Images\like.svg" />
+	  <None Remove="Resources\Images\movie.svg" />
+	  <None Remove="Resources\Images\notification_bell.svg" />
+	  <None Remove="Resources\Images\ntflx_logo.png" />
+	  <None Remove="Resources\Images\play.svg" />
+	  <None Remove="Resources\Images\plus.svg" />
+	  <None Remove="Resources\Images\rate.svg" />
+	  <None Remove="Resources\Images\search.svg" />
+	  <None Remove="Resources\Images\share.svg" />
+	  <None Remove="Resources\Images\user.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

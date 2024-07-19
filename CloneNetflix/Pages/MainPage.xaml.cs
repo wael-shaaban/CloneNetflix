@@ -1,4 +1,4 @@
-﻿namespace CloneNetflix
+﻿namespace CloneNetflix.Pages
 {
     public partial class MainPage : ContentPage
     {
