@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="CloneNetflix.Pages.CategoriesPage"
+             xmlns:VM="clr-namespace:CloneNetflix.ViewModels"
+             Shell.PresentationMode="ModalAnimated"
+             x:DataType="VM:CategoriesViewModel"
+             BackgroundColor="Transparent">
+    <ContentPage.Behaviors>
+        <mct:EventToCommandBehavior EventName="Appearing" Command="{Binding InitializeCommand}"/>
+    </ContentPage.Behaviors>
+    <Grid>
+        <BoxView BackgroundColor="{DynamicResource Black}" Opacity="0.8" />
+        <CollectionView ItemsSource="{Binding Categories}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Label Text="{Binding .}"  FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="X" FontSize="20" FontAttributes="Bold" WidthRequest="40" HeightRequest="40"
+                CornerRadius="20" VerticalOptions="End" HorizontalOptions="Center" Command="{Binding CloseCommand}"
+                BackgroundColor="{DynamicResource White}" TextColor="{DynamicResource Black}" Padding="0"
+                Margin="10">
+            <Button.Shadow>
+                <Shadow Radius="20" Offset="10,0" Brush="Red" Opacity="0.8"/>
+            </Button.Shadow>
+        </Button>
+    </Grid>
+</ContentPage>

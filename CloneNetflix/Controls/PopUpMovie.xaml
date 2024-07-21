@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:CloneNetflix.Models"
+             x:Class="CloneNetflix.Controls.PopUpMovie"
+             x:Name="this">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Ellipse" x:Key="iconBg">
+                <Setter Property="HeightRequest" Value="25"/>
+                <Setter Property="WidthRequest" Value="25"/>
+                <Setter Property="Fill" Value="{DynamicResource Gray600}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="Image" x:Key="iconImg">
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="WidthRequest" Value="20"/>
+                <Setter Property="Aspect" Value="AspectFill"/>
+            </Style>
+            <Style TargetType="Label" x:Key="iconBtnText">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="TextColor" Value="#9d9d9d"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Border BindingContext="{x:Reference this}" StrokeThickness="0" 
+                BackgroundColor="#2b2b2b" Padding="0" Margin="0" StrokeShape="RoundRectangle 10,10,0,0">
+        <VerticalStackLayout Padding="0">
+            <Grid VerticalOptions="StartAndExpand" 
+           ColumnDefinitions="120,*"
+             RowDefinitions="auto,auto,auto"
+             Padding="10"
+             Margin="0"
+             ColumnSpacing="5">
+                <Border VerticalOptions="StartAndExpand" Grid.Column="0" Grid.RowSpan="3" StrokeThickness="0"
+                   HeightRequest="150" WidthRequest="120" Padding="0"
+                   StrokeShape="RoundRectangle 5" BackgroundColor="{DynamicResource Black}">
+                    <Image Aspect="AspectFill" HeightRequest="150" WidthRequest="120">
+                        <Image.Source>
+                            <UriImageSource Uri="{Binding Media.Thumbnail}"/>
+                        </Image.Source>
+                    </Image>
+                </Border>
+                <Grid ColumnDefinitions="*,auto" Grid.Column="1">
+                    <Label Text="{Binding Media.DisplayTitle,FallbackValue='Movie Title'}" FontAttributes="Bold" FontSize="20"/>
+                    <Button Grid.Column="1" Text="X" Command="{Binding CloseCommand}" Clicked="Button_Clicked" CornerRadius="30" FontAttributes="Bold" HeightRequest="30" WidthRequest="30" Padding="0" Margin="0" FontSize="20" VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="{DynamicResource Gray500}" TextColor="{DynamicResource White}"/>
+                </Grid>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Media.ReleaseDate,StringFormat='{0:yyyy-MM-dd}'}" TextColor="{DynamicResource Gray400}"/>
+                <Label LineBreakMode="CharacterWrap" Grid.Column="1" Grid.Row="2" Text="{Binding Media.Overview}" MaxLines="4" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*,*,*" Margin="0,20,0,5">
+                <Grid Grid.Column="0" RowDefinitions="auto,auto">
+                    <Label x:Name="Ref" BackgroundColor="{DynamicResource White}" IsEnabled="False" IsVisible="False" />
+                    <Ellipse Style="{StaticResource iconBg}" ></Ellipse>
+                    <Image Source="play" Style="{StaticResource iconImg}">
+                        <Image.Behaviors>
+                            <mct:IconTintColorBehavior TintColor="{Binding Source={x:Reference Ref}, Path=BackgroundColor}" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Grid.Row="1" Text="Play" Style="{StaticResource iconBtnText}"/>
+                </Grid>
+                <Grid Grid.Column="1" RowDefinitions="auto,auto">
+                    <Ellipse Style="{StaticResource iconBg}" ></Ellipse>
+                    <Image Source="download" Style="{StaticResource iconImg}">
+                        <Image.Behaviors>
+                            <mct:IconTintColorBehavior TintColor="{Binding Source={x:Reference Ref}, Path=BackgroundColor}" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Grid.Row="1" Text="Download" Style="{StaticResource iconBtnText}"/>
+                </Grid>
+                <Grid Grid.Column="2" RowDefinitions="auto,auto">
+                    <Ellipse Style="{StaticResource iconBg}" ></Ellipse>
+                    <Image Source="plus" Style="{StaticResource iconImg}">
+                        <Image.Behaviors>
+                            <mct:IconTintColorBehavior TintColor="{Binding Source={x:Reference Ref}, Path=BackgroundColor}" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Grid.Row="1" Text="My List" Style="{StaticResource iconBtnText}"/>
+                </Grid>
+                <Grid Grid.Column="3" RowDefinitions="auto,auto">
+                    <Ellipse Style="{StaticResource iconBg}" ></Ellipse>
+                    <Image Source="share" Style="{StaticResource iconImg}">
+                        <Image.Behaviors>
+                            <mct:IconTintColorBehavior TintColor="{Binding Source={x:Reference Ref}, Path=BackgroundColor}" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Grid.Row="1" Text="Share" Style="{StaticResource iconBtnText}"/>
+                </Grid>
+            </Grid>
+            <BoxView HeightRequest="2" Color="{DynamicResource Gray300}"></BoxView>
+            <Grid ColumnDefinitions="auto,*,auto" Margin="10,10" ColumnSpacing="5">
+                <Grid VerticalOptions="Center">
+                    <Ellipse Stroke="{DynamicResource White}" HeightRequest="20" WidthRequest="20" StrokeThickness="2"/>
+                    <Label Text="i" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                </Grid>
+                <Label Grid.Column="1" Text="Details &amp; More!" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Grid.Column="2" Text=">" FontSize="20"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

@@ -6,11 +6,31 @@
     xmlns:local="clr-namespace:CloneNetflix"
     xmlns:Pages="clr-namespace:CloneNetflix.Pages"
     Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="#121212"
+    Shell.TabBarTitleColor="{DynamicResource White}"
+    Shell.TabBarUnselectedColor="{DynamicResource Gray500}"
     Title="CloneNetflix">
-
+    <TabBar>
     <ShellContent
         Title="Home"
+        Icon="hometab"
         ContentTemplate="{DataTemplate Pages:MainPage}"
         Route="MainPage" />
-
+            <ShellContent
+        Title="Games"
+        Icon="game"
+        ContentTemplate="{DataTemplate Pages:MainPage}"
+        Route="MainPage1" />
+            <ShellContent
+        Title="New &amp; Hot"
+        Icon="brand_netflix"
+        ContentTemplate="{DataTemplate Pages:MainPage}"
+        Route="MainPage2" />
+            <ShellContent
+        Title="Downloads"
+        Icon="download"
+        ContentTemplate="{DataTemplate Pages:MainPage}"
+        Route="MainPage2" />
+        
+</TabBar>
 </Shell>

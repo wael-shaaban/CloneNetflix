@@ -1,25 +1,26 @@
-﻿namespace CloneNetflix.Pages
+﻿using CloneNetflix.Services;
+using CloneNetflix.ViewModels;
+
+namespace CloneNetflix.Pages
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
-        public MainPage()
+        HomeViewModel HomeViewModel;
+        public MainPage(HomeViewModel homeViewModel)
         {
+            this.BindingContext = homeViewModel;
+            HomeViewModel = homeViewModel;
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void MovieRaw_MediaSelected(object sender, Controls.MediaSelectedEventArgs e)
         {
-            count++;
+            HomeViewModel.SelectMedia(e.Media);
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private void PopUpMovie_Closed(object sender, EventArgs e)
+        {
+            HomeViewModel.SelectMedia(null);
         }
     }
-
 }
