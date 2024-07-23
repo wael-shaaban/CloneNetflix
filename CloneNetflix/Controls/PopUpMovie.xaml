@@ -28,6 +28,9 @@
     </ContentView.Resources>
     <Border BindingContext="{x:Reference this}" StrokeThickness="0" 
                 BackgroundColor="#2b2b2b" Padding="0" Margin="0" StrokeShape="RoundRectangle 10,10,0,0">
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </Border.GestureRecognizers>
         <VerticalStackLayout Padding="0">
             <Grid VerticalOptions="StartAndExpand" 
            ColumnDefinitions="120,*"

@@ -18,21 +18,22 @@ namespace CloneNetflix
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular"); 
+                    fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("Poppins-SemiBold.ttf", "PoppinsSemibold");
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             builder.Services.AddHttpClient(AppConstants.TmdvHttpClientName,
-                httpClient=>httpClient.BaseAddress=new Uri("https://api.themoviedb.org"));
+                httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
 
             builder.Services.TryAddSingleton<TmdbService>();
-            builder.Services.AddSingleton<MainPage>();   
-            builder.Services.AddSingleton<HomeViewModel>(); 
-            builder.Services.AddSingleton<CategoriesPage>();   
-            builder.Services.AddSingleton<CategoriesViewModel>();   
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<HomeViewModel>();
+            builder.Services.AddSingleton<CategoriesPage>();
+            builder.Services.AddSingleton<CategoriesViewModel>();
+            builder.Services.AddTransientWithShellRoute<DetailsPage, DetailsViewModel>(nameof(DetailsPage));
             return builder.Build();
         }
     }

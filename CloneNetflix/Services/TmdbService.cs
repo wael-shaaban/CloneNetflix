@@ -22,6 +22,19 @@ namespace CloneNetflix.Services
 
         private HttpClient HttpClient => _httpClientFactory.CreateClient(AppConstants.TmdvHttpClientName);
 
+        public async Task<MovieDetail?> GetMovieDetailsAsync(int movieId,string type="movie")=>
+             await HttpClient.GetFromJsonAsync<MovieDetail?>($"{TmdbUrls.GetMovieDetails(movieId, type)}&api_key={ApiKey}");
+
+        public async Task<IEnumerable<Video>?> GetTrailersAsyns(int movieId,string type="movie")
+        {
+            var videiWrapper = await HttpClient.GetFromJsonAsync<VideosWrapper>($"{TmdbUrls.GetTrailers(movieId, type)}&api_key={ApiKey}");
+            if (videiWrapper?.results?.Any() == true)
+            {
+                var trailerTeaser = videiWrapper.results.Where(VideosWrapper.FilterTrailerTeasers);
+                return trailerTeaser;
+            }
+            return null;
+        }
         public async Task<IEnumerable<Genre>> GetCategoriesAsync()
         {
             var data =await HttpClient.GetFromJsonAsync<GenreWrapper>($"{TmdbUrls.MovieGenres}&api_key={ApiKey}");
@@ -29,6 +42,9 @@ namespace CloneNetflix.Services
         }
         public async Task<IEnumerable<Media>> GetTrendingAsync() =>
             await GetMediasAsync(TmdbUrls.Trending);
+
+        public async Task<IEnumerable<Media>> GetSimilarAsync(int movieId, string type = "movie") =>
+          await GetMediasAsync($"{TmdbUrls.GetSimilar(movieId,type)}&api_key={ApiKey}");
 
         public async Task<IEnumerable<Media>> GetTopRatedAsync()=>
              await GetMediasAsync(TmdbUrls.TopRated);
